@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
-import { tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators'
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   private baseUrl = 'http://127.0.0.1:8080';
   _refreshneeded$: any;
+  authToken: any;
+  user: any;
   constructor( private http:HttpClient, private router:Router ) { }
 
   login(employee: Employee): Observable<any> {
@@ -19,6 +21,8 @@ export class AuthService {
     data.append("password", employee.password);
     return this.http.post<JSON>(`${this.baseUrl}/api/login.php`,  data);
   }
+  
+  
 
   createEmployee(employee: Employee): Observable<any> {
     //console.log(employee);
@@ -49,5 +53,18 @@ export class AuthService {
   }
   getUserId() {
     return localStorage.getItem('user_id');
+  }
+  /* blog services starts */
+  bloglogin(user): Observable<any> {
+    return this.http.post(`${this.baseUrl}/authentication/login`, user);
+  }
+  storeUserData(token, user) {
+    localStorage.setItem('token', token); // Set token in local storage
+    localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
+    this.authToken = token; // Assign token to be used elsewhere
+    this.user = user; // Set user to be used elsewhere
+  }
+  getProfile(): Observable<any>  {
+    return this.http.get(`${this.baseUrl}/authentication/profile`);
   }
 }

@@ -23,6 +23,8 @@ import { CovidCasesComponent } from './covid-cases/covid-cases.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { EmployeeHealthComponent } from './employee-health/employee-health.component';
 import { AlertComponent } from './alert/alert.component';
+import { BlogLoginComponent } from './blog-login/blog-login.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AlertComponent } from './alert/alert.component';
     CovidCasesComponent,
     ChecklistComponent,
     EmployeeHealthComponent,
-    AlertComponent
+    AlertComponent,
+    BlogLoginComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

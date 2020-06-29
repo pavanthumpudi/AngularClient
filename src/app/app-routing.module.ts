@@ -12,12 +12,14 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { CovidCasesComponent } from './covid-cases/covid-cases.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { EmployeeHealthComponent } from './employee-health/employee-health.component';
-import { FirebaseLoginComponent } from './firebase-login/firebase-login.component';
+import { BlogLoginComponent } from './blog-login/blog-login.component';
+import { BlogComponent } from './blog/blog.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'checklist', pathMatch: 'full' },
-  { path: 'fire', component: FirebaseLoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: 'blog', pathMatch: 'full' },
+  { path: 'blog-login', component: BlogLoginComponent },
+  { path: 'blog', component: BlogComponent, canActivate:[AuthGuard]},
+  /*{ path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'employees', component: EmployeeListComponent, canActivate:[AuthGuard] },
   { path: 'chart', component: BarChartComponent, canActivate:[AuthGuard] },
@@ -25,9 +27,9 @@ const routes: Routes = [
   { path: 'update/:id', component: UpdateEmployeeComponent },
   { path: 'details/:id', component: EmployeeDetailsComponent },
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
-  { path: 'covid', component: CovidCasesComponent },
   { path: 'test', component: EmployeeHealthComponent, canActivate:[AuthGuard]  },
-  { path: 'checklist', component: ChecklistComponent, canActivate:[AuthGuard]  }
+  { path: 'checklist', component: ChecklistComponent, canActivate:[AuthGuard]  },*/
+  { path: 'covid', component: CovidCasesComponent },
 ];
 
 @NgModule({

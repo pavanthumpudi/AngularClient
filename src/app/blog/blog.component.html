@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="row show-hide-message" *ngIf="message && newPost">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+    </div>
+    <a *ngIf="!newPost" class="btn btn-app" (click)="showNewBlogForm()">
+        <i class="fas fa-plus"></i> Add New
+    </a>
+    <a *ngIf="newPost" class="btn btn-app" (click)="HideNewBlogForm()">
+        <i class="fas fa-minus"></i> Cancel
+    </a>
+    <div class="col-md-12">
+        <div class="card card-warning col-md-12" *ngIf="newPost">
+            <div class="card-body">
+                <form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()" >
+                    <!-- Title Input -->
+                    <div class="form-group">
+                    <label for="title">Title</label>
+                    <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
+                        <!-- Title Input -->
+                        <input type="text" name="title" class="form-control" placeholder="*Blog Title" autocomplete="off" formControlName="title" />
+                        <!-- Validation -->
+                        <ul class="list-unstyled">
+                        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
+                        <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)">Max length: 50, Min length: 5</li>
+                        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Must be a letter or number</li>
+                        </ul>
+                    </div>
+                    </div>
+                
+                    <!-- Body Input -->
+                    <div class="form-group">
+                    <label for="body">Body</label>
+                    <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
+                        <!-- Body Input -->
+                        <textarea name="body" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="body"></textarea>
+                        <!-- Validation -->
+                        <ul class="list-unstyled">
+                        <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
+                        <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)">Max length: 500, Min length: 5</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngFor="let blog of blogPosts" class="col-md-12">
+        <!-- Box Comment -->
+        <div class="card card-widget">
+          <div class="card-header">
+            <div class="user-block">
+              <span class="username"><a>{{blog.title}}</a></span>
+              <span class="description">{{blog.createdAt | date:'fullDate'}} at {{blog.createdAt | date:'h:m'}}</span>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <!-- post text -->
+            <p>{{blog.body}}</p>
+            <!-- /.attachment-block -->
+
+            <!-- buttons -->
+            <button *ngIf="username!=blog.createdBy" [disabled]="blog.likedBy.indexOf(username) > -1" (click)="likeBlog(blog._id)" type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+            <span class="float-right text-muted">{{blog.likes}} likes - {{blog.comments.length}} comments</span>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer card-comments">
+            <div class="card-comment">
+                <div class="direct-chat-messages" style="height:auto;max-height:250px;padding:0px">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg" *ngFor="let comment of blog.comments" >
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">{{comment.commentator}}</span>
+                        <span class="direct-chat-timestamp float-right"></span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+
+                      <div class="direct-chat-text">
+                        {{comment.comment}}
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                </div>
+                
+              <!-- /.comment-text -->
+            </div>
+            
+          </div>
+          <!-- /.card-footer -->
+          <div class="card-footer">
+           
+            <form [formGroup]="commentForm" (submit)="postComment(blog._id)">
+                <!-- Textarea Input -->
+                
+                <div class="input-group mb-3">
+                    <input type="text" name="comment" rows="10" cols="30" class="form-control" formControlName="comment" placeholder="Enter comment">
+                    <span class="input-group-append">
+                      <button [disabled]="!commentForm.valid || processing"  type="submit" class="btn btn-info btn-flat">Go!</button>
+                    </span>
+                  </div>
+                <!-- Validation -->
+                <div [ngClass]="{'has-success': !commentForm.controls.comment.errors && commentForm.controls.comment.dirty, 'has-error': commentForm.controls.comment.dirty && commentForm.controls.comment.errors}">
+                  <ul class="list-unstyled">
+                    <li *ngIf="commentForm.controls.comment.errors?.required && commentForm.controls.comment.dirty">This field is required.</li>
+                    <li *ngIf="(commentForm.controls.comment.errors?.maxlength && commentForm.controls.comment.dirty) ||(commentForm.controls.comment.errors?.minlength && commentForm.controls.comment.dirty)">Comment must be at least 1 character but no more than 200.</li>
+                  </ul>
+                </div>
+            </form>
+            
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+      </div>
+</div>
