@@ -55,6 +55,18 @@ export class AuthService {
     return localStorage.getItem('user_id');
   }
   /* blog services starts */
+  blogregister(user): Observable<any>{
+    return this.http.post(`${this.baseUrl}/authentication/register`, user);
+  }
+  // Function to check if username is taken
+  checkUsername(username): Observable<any> {
+    return this.http.get(`${this.baseUrl}/authentication/checkUsername/` + username);
+  }
+
+  // Function to check if e-mail is taken
+  checkEmail(email) : Observable<any>{
+    return this.http.get(`${this.baseUrl}/authentication/checkEmail/` + email);
+  }
   bloglogin(user): Observable<any> {
     return this.http.post(`${this.baseUrl}/authentication/login`, user);
   }

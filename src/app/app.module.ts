@@ -25,6 +25,7 @@ import { EmployeeHealthComponent } from './employee-health/employee-health.compo
 import { AlertComponent } from './alert/alert.component';
 import { BlogLoginComponent } from './blog-login/blog-login.component';
 import { BlogComponent } from './blog/blog.component';
+import { BlogRegisterComponent } from './blog-register/blog-register.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { BlogComponent } from './blog/blog.component';
     EmployeeHealthComponent,
     AlertComponent,
     BlogLoginComponent,
-    BlogComponent
+    BlogComponent,
+    BlogRegisterComponent
   ],
   imports: [
     BrowserModule,

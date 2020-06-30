@@ -14,11 +14,13 @@ import { ChecklistComponent } from './checklist/checklist.component';
 import { EmployeeHealthComponent } from './employee-health/employee-health.component';
 import { BlogLoginComponent } from './blog-login/blog-login.component';
 import { BlogComponent } from './blog/blog.component';
+import { BlogRegisterComponent } from './blog-register/blog-register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'blog', pathMatch: 'full' },
+  { path: '', redirectTo: 'blog-login', pathMatch: 'full' },
   { path: 'blog-login', component: BlogLoginComponent },
   { path: 'blog', component: BlogComponent, canActivate:[AuthGuard]},
+  { path: 'blog-register', component: BlogRegisterComponent },
   /*{ path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'employees', component: EmployeeListComponent, canActivate:[AuthGuard] },

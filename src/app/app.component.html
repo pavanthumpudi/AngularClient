@@ -21,13 +21,13 @@
     </ul>
     <ul class="navbar-nav ml-auto" >
       <li class="nav-item d-none d-sm-inline-block">
-        <a *ngIf="!auth.loggedIn()" routerLink="register" routerLinkActive="active" class="nav-link">Register</a>
+        <a *ngIf="!auth.loggedIn()" routerLink="blog-register" routerLinkActive="active" class="nav-link">Register</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a *ngIf="!auth.loggedIn()" routerLink="login" class="nav-link" routerLinkActive="active">Login</a>
+        <a *ngIf="!auth.loggedIn()" routerLink="blog-login" class="nav-link" routerLinkActive="active">Login</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a *ngIf="auth.loggedIn()" routerLink="login" (click) = "auth.logout()" class="nav-link" routerLinkActive="active">Logout</a>
+        <a *ngIf="auth.loggedIn()" routerLink="blog-login" (click) = "auth.logout()" class="nav-link" routerLinkActive="active">Logout</a>
       </li>
     </ul>
 

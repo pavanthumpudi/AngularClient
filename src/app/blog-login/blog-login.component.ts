@@ -63,13 +63,15 @@ export class BlogLoginComponent implements OnInit {
         // Function to store user's token in client local storage
         this.authService.storeUserData(data.token, data.user);
         // After redirect to dashboard page
-        this.router.navigate(['/covid']); // Navigate to dashboard view
+        this.router.navigate(['/blog']); // Navigate to dashboard view
       }
     });
   }
 
   ngOnInit(): void {
-
+    if (this.authService.loggedIn()) {
+      this.router.navigate(['/blog']);
+    }
   }
 
 }
