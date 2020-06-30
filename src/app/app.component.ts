@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'Manage Employee';
+  title = 'Blog';
   auth_id:any;
   constructor (public auth:AuthService) { }
    ngOnInit(): void {
