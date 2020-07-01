@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Employee List</h3>
+      <div class="card-tools">
+        <form (ngSubmit)="onSubmit()" class="form-horizontal">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" [(ngModel)]="skill" name="table_search" class="form-control float-right" placeholder="Search By Name">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div *ngFor="let employee of employees | async" class="col-sm-6 col-lg-4">
+         
+          <div class="card card-widget widget-user-2"> 
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-warning">
+              <div class="widget-user-image">
+                <img  [hidden]="employee.gender==0" class="img-circle elevation-2" src="assets/avatar5.png" alt="User Avatar">
+                <img  [hidden]="employee.gender==1" class="img-circle elevation-2" src="assets/avatar2.png" alt="User Avatar">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">{{employee.firstName}} {{employee.lastName}}</h3>
+              <h5 class="widget-user-desc" style="font-size: 12px;">{{employee.emailId}}</h5>
+            </div>
+            <div class="card-footer p-0">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <button style="border: none;" (click)="employeeDetails(employee.id)" class="nav-link btn-block">
+                    <span class="float-left">Details</span><span class="float-right badge bg-primary"><i class="nav-icon fas fa-angle-right"></i></span>
+                  </button>
+                </li>
+                <li class="nav-item" *ngIf="role==1">
+                  <button style="border: none;" (click)="editDetails(employee.id)" class="nav-link btn-block">
+                    <span class="float-left">Edit</span><span class="float-right badge bg-primary"><i class="nav-icon fas fa-angle-right"></i></span>
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <p class="nav-link">
+                    Skills <span class="float-right badge bg-primary">{{employee.skillCount}}</span>
+                  </p>
+                </li>             
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <!--
+    <div class="card-body table-responsive p-0">
+      <table class="table table-hover text-nowrap">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees | async">
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.emailId}}</td>
+            <td>
+                <button (click)="employeeDetails(employee.id)" class="btn btn-xs btn-info" style="margin-left: 10px;width:30px"><i class="nav-icon fas fa-info"></i></button>
+                <button (click)="editDetails(employee.id)" class="btn btn-xs btn-warning" style="margin-left: 10px;width:30px"><i class="nav-icon fas fa-edit"></i></button> 
+                <button (click)="deleteEmployee(employee.id)" class="btn btn-xs btn-danger" style="margin-left: 10px;width:30px"><i class="nav-icon fas fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>-->
+    <!-- /.card-body -->
+
+  <!-- /.card-body -->
+</div>

@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Employee List</h3>
+      <div>
+        <button *ngIf="role==1" type="button" (click)="sendReport()"  [disabled]="disable" class="btn btn-info float-right">Send Report</button>
+        <br><br><p class="text-success float-right" *ngIf="message">{{message}}</p>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0">
+      <table class="table table-hover text-nowrap">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Email</th>
+            <th>Symptoms</th>
+            <th>Health Issue</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employees | async">
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.emailId}} </td>
+            <td> 
+              <ul class="list-unstyled">
+                <li *ngFor="let s of employee.symptoms">
+                  {{ s }}
+                </li>
+              </ul>
+            </td>
+            <td>{{employee.unhealty}} %</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+
+  <!-- /.card-body -->
+</div>

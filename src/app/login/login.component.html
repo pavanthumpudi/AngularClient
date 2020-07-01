@@ -1,0 +1,40 @@
+<body class="register-page" >
+  <div class="hold-transition ">
+      <div class="login-box">
+          <!-- /.login-logo -->
+          <div class="card">
+            <div class="card-body login-card-body">
+              <p class="login-box-msg">Sign in to start your session</p>
+        
+              <form action="../../index3.html" method="post">
+                
+                <div class="input-group mb-3">
+                  <input type="email" required [(ngModel)]="employee.emailId" name="emailId" class="form-control" placeholder="Email">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="password"  required [(ngModel)]="employee.password" name="password" class="form-control" placeholder="Password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button (click)="login()" type="submit" class="btn btn-primary btn-block">Sign In</button>
+                </div>
+                <a routerLink="/register" class="nav-link" routerLinkActive="active">Don't have a account</a>
+                
+              </form>
+        
+              
+            </div>
+            <!-- /.login-card-body -->
+          </div>
+        </div>
+  </div>
+</body>

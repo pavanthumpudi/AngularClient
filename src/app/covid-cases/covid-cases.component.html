@@ -1,0 +1,60 @@
+<div class="card card-info">
+    <div class="card-body">
+        <div class="chart"><div class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand">
+                <div class="">
+
+                </div>
+                </div>
+                <div class="chartjs-size-monitor-shrink"><div class="">
+                  
+                </div>
+            </div>
+        </div>
+        <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+        </canvas>
+        <div class="row">
+            <div *ngFor="let state of covid_data" class="col-sm-6 col-lg-4">
+                <div class="card card-widget widget-user"> 
+                    <div class="widget-user-header bg-warning" style="height:auto;">
+
+                        <h5 class="widget-user-username">{{state.state}}</h5>
+                        
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                Confirmed <span class="float-right badge bg-secondary">{{state.confirmed}}</span>
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                Active <span class="float-right badge bg-warning">{{state.active}}</span>
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                Recovered <span class="float-right badge bg-success">{{state.recovered}}</span>
+                                </a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                Deaths <span class="float-right badge bg-danger">{{state.deaths}}</span>
+                                </a>
+                            </li>             
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
