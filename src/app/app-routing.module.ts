@@ -15,12 +15,17 @@ import { EmployeeHealthComponent } from './employee-health/employee-health.compo
 import { BlogLoginComponent } from './blog-login/blog-login.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogRegisterComponent } from './blog-register/blog-register.component';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { BlogProfileComponent } from './blog-profile/blog-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'blog-login', pathMatch: 'full' },
   { path: 'blog-login', component: BlogLoginComponent },
   { path: 'blog', component: BlogComponent, canActivate:[AuthGuard]},
   { path: 'blog-register', component: BlogRegisterComponent },
+  { path: 'edit-blog/:id', component: EditBlogComponent, canActivate: [AuthGuard] },
+  { path: 'blogprofile', component: BlogProfileComponent, canActivate: [AuthGuard] },
+  { path: 'covid', component: CovidCasesComponent },
   /*{ path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'employees', component: EmployeeListComponent, canActivate:[AuthGuard] },
@@ -31,7 +36,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate:[AuthGuard] },
   { path: 'test', component: EmployeeHealthComponent, canActivate:[AuthGuard]  },
   { path: 'checklist', component: ChecklistComponent, canActivate:[AuthGuard]  },*/
-  { path: 'covid', component: CovidCasesComponent },
+  
 ];
 
 @NgModule({

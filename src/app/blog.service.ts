@@ -29,6 +29,11 @@ export class BlogService {
       comment: comment
     }
     return this.http.post(`${this.baseUrl}/blogs/comment`, blogData);
-
+  }
+  getSingleBlog(id): Observable<any> {
+    return this.http.get(`${this.baseUrl}/blogs/singleBlog/` + id);
+  }
+  editBlog(blog): Observable<any> {
+    return this.http.put(`${this.baseUrl}/blogs/updateBlog/`, blog);
   }
 }

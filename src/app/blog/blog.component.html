@@ -18,15 +18,18 @@
       </a>
     </div>
     <div class="col-md-12">
-        <div class="card card-warning col-md-12" *ngIf="newPost">
+      <div *ngIf="newPost">
+        <div class="card card-secondary col-md-12 p-0">
+            <div class="card-header">
+              <h3 class="card-title">Add New Blog</h3>
+            </div>
             <div class="card-body">
                 <form [formGroup]="form" name="blogForm" (submit)="onBlogSubmit()" >
                     <!-- Title Input -->
                     <div class="form-group">
-                    <label for="title">Title</label>
                     <div [ngClass]="{'has-success': form.controls.title.valid, 'has-error': form.controls.title.dirty && form.controls.title.errors}">
                         <!-- Title Input -->
-                        <input type="text" name="title" class="form-control" placeholder="*Blog Title" autocomplete="off" formControlName="title" />
+                        <input type="text" name="title" class="form-control" placeholder="Blog Title" autocomplete="off" formControlName="title" />
                         <!-- Validation -->
                         <ul class="list-unstyled">
                         <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required">This field is required.</li>
@@ -38,10 +41,10 @@
                 
                     <!-- Body Input -->
                     <div class="form-group">
-                    <label for="body">Body</label>
+          
                     <div [ngClass]="{'has-success': form.controls.body.valid, 'has-error': form.controls.body.dirty && form.controls.body.errors}">
                         <!-- Body Input -->
-                        <textarea name="body" rows="8" cols="80" placeholder="*Body" class="form-control" formControlName="body"></textarea>
+                        <textarea name="body" rows="8" cols="80" placeholder="Body" class="form-control" formControlName="body"></textarea>
                         <!-- Validation -->
                         <ul class="list-unstyled">
                         <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required">This field is required.</li>
@@ -49,10 +52,14 @@
                         </ul>
                     </div>
                     </div>
-                    <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Submit</button>
+                    
                 </form>
             </div>
+            <div class="card-footer">
+              <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success float-right">Submit</button>
+            </div>
         </div>
+      </div>
     </div>
     
     <div *ngFor="let blog of blogPosts" class="col-md-12">
@@ -60,8 +67,18 @@
         <div class="card card-widget card-info">
           <div class="card-header">
             <div class="user-block col-sm-12 p-0">
-              <h5 class=""><a>{{blog.title}}</a></h5>
-            </div><br>
+              <div class="user-block col-sm-9 p-0">
+                <h5 class=""><a>{{blog.title}}</a></h5>
+              </div>
+              <div class="user-block col-sm-3 p-0">
+                <a class="float-right display-inline" [routerLink]="['/edit-blog/', blog._id]" *ngIf="username === blog.createdBy">
+                  <button type="button" name="button" class="btn btn-sm btn-info">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </a>
+              </div>
+          </div>
+          <br>
             <p>
               By {{blog.createdBy}}
               <span class="float-right"> {{blog.createdAt | date:'fullDate'}} at {{blog.createdAt | date:'h:m'}}</span>
@@ -111,7 +128,7 @@
             </div>
             
             <!-- /.card-footer -->
-            <div class="card-footer">
+            <div class="">
              
               <form [formGroup]="commentForm" (submit)="postComment(blog._id)">
                   <!-- Textarea Input -->

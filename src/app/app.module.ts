@@ -27,6 +27,8 @@ import { BlogLoginComponent } from './blog-login/blog-login.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogRegisterComponent } from './blog-register/blog-register.component';
 import { Nl2BrPipeModule } from 'nl2br-pipe';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { BlogProfileComponent } from './blog-profile/blog-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { Nl2BrPipeModule } from 'nl2br-pipe';
     AlertComponent,
     BlogLoginComponent,
     BlogComponent,
-    BlogRegisterComponent
+    BlogRegisterComponent,
+    EditBlogComponent,
+    BlogProfileComponent
   ],
   imports: [
     BrowserModule,
